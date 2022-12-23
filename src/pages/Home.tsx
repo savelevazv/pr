@@ -1,12 +1,10 @@
 import React, { FC } from "react";
-import { CenteredLayout } from "../components/Layouts/CenteredLayout";
-import { CenteredLayoutBody } from "../components/Layouts/CenteredLayoutBody";
 import { BannerStatistics } from "../components/Banners/BannerStatistics/BannerStatistics";
 import { BestPromotions } from "../components/BestPromotions";
 import { FAQ } from "../components/FAQ";
 import { Popular } from "../components/Popular";
 import { StagesOfInterpretation } from "../components/StagesOfInteraction";
-import { PromocodesList } from "../PromocodesList";
+import { PromocodesList } from "../components/PromocodesList";
 import { Shops } from "../components/Shops";
 
 const testData = [
@@ -19,32 +17,32 @@ const testData = [
         title: 'test',
         shop: 'test',
         promocode: 'test',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 2,
-        discount: 'Подарок',
+        discount: '10%',
         recommendation: true,
         logoUrl: '',
         logoAlt: '',
         title: 'test',
         shop: 'test',
         promocode: 'РРРРН',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 3,
-        discount: 'Подарок',
+        discount: '20%',
         recommendation: true,
         logoUrl: '',
         logoAlt: '',
         title: 'test',
         shop: 'test',
         promocode: '9дв',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 4,
@@ -55,8 +53,8 @@ const testData = [
         title: 'test',
         shop: 'test',
         promocode: 'test',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 5,
@@ -67,8 +65,8 @@ const testData = [
         title: 'test',
         shop: 'test',
         promocode: 'test',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 6,
@@ -79,8 +77,8 @@ const testData = [
         title: 'test',
         shop: 'test',
         promocode: 'test',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 7,
@@ -91,8 +89,8 @@ const testData = [
         title: 'test',
         shop: 'test',
         promocode: 'test',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 8,
@@ -103,8 +101,8 @@ const testData = [
         title: 'test',
         shop: 'test',
         promocode: 'test',
-        usage: 2,
-        time: 2,
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     }
 ]
 

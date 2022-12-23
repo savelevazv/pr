@@ -1,36 +1,28 @@
-import React, { FC, useState } from "react";
+import { FC } from "react";
 import { Div } from "../styles/Div.styled";
-import { Flex } from "../styles/Flex.styled";
-
 import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { RoundBtn } from "./Buttons/RoundBtn";
-import { Link } from "../Link";
+import { BaseLinkProps, Link } from "./Link";
 import { StyledH2 } from "../styles/Fonts.styled";
 
-interface CarouselProps {
-    src?: string
-    to: string
-    id?: number
+export interface CarouselProps extends Omit<BaseLinkProps, "title"> {
+    src: string
 }
 
 type CarouselContentArray = Array<CarouselProps>
 
 const carouselContent: CarouselContentArray = [
     {
-        id: 1,
         src: '/img/1.jpg',
         to: '/'
     },
     {
-        id: 2,
         src: '/img/2.jpg',
         to: '/'
     },
     {
-        id: 3,
         src: '/img/3.jpg',
         to: '/'
     }
@@ -92,7 +84,7 @@ export const BestPromotions: FC = () => {
                     return (
                         <Link
                             to={item.to}
-                            key={item.id}
+                            key={item.src}
                         >
                             <img
                                 src={item.src}

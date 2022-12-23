@@ -23,8 +23,14 @@ import { Offers } from './pages/Offers';
 import { Global } from './styles/Global.styled';
 import { CategoryPage } from './pages/Category/CategoryPage';
 import { fetchShops } from './store/reducers/asyncActions';
-import { Div } from './styles/Div.styled';
 import { Drawer } from './components/Drawer';
+import { SearchPage } from './pages/SearchPage';
+
+// скачет страница, при открытии меню или модального окна
+// не отрабатывает transition у modal
+// onBlur не позволяет нажать на кнопку "Показать все" в блоке поиска
+// Фильтрация по алфавиту
+// Адаптивы
 
 const StyledMain = styled('main')`
   & {
@@ -43,13 +49,6 @@ export const StyledHeader = styled('header')`
       }
     `
 
-// разобраться с отрисовкой карточки и модалки соответственно
-// разобраться с отрисовкой страницы под каждый магазин
-// отрисовать поиск
-// если промокодов много, разбить по страницам
-// не забыть, что модалка должна открываться и по клику на заголовок
-// schema.org
-
 function App() {
   const menuState = useAppSelector(state => state.menu.value)
   const modalState = useAppSelector(state => state.modal.value)
@@ -64,9 +63,6 @@ function App() {
       <Global
         overflow={menuState || modalState ? 'hidden' : 'scroll'}
       />
-      {
-        modalState && <Modal />
-      }
       <Header />
       <StyledMain>
         <CenteredLayout>
@@ -85,7 +81,7 @@ function App() {
                 element={<CategoryPage />}
               />
               <Route
-                path='shops/:translit_shop_name'
+                path='shops/test'
                 element={<ShopPage />}
               />
               <Route
@@ -116,11 +112,16 @@ function App() {
                 path='offers'
                 element={<Offers />}
               />
+              <Route
+                path='search'
+                element={<SearchPage />}
+              />
             </Routes>
             <BannerSubscriptionBasic />
           </CenteredLayoutBody>
         </CenteredLayout>
       </StyledMain>
+      <Modal />
       <Drawer />
       <ScrollToTop />
       <Footer />

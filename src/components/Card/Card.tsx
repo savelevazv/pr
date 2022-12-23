@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { Div } from "../../styles/Div.styled";
 import { Flex } from "../../styles/Flex.styled";
-import { Link } from "../../Link";
+import { Link } from "../Link";
 import { PromocodeProps } from "../../assets/types";
 import { Recommendation } from "./Recommendation";
 import { Promocode } from "./Promocode";

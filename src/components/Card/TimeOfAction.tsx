@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Flex } from "../../styles/Flex.styled";
 import { StyledP } from "../../styles/Fonts.styled";
 
-export const TimeOfAction: FC<{ time: number }> = ({ time }) => {
+export const TimeOfAction: FC<{ time: string }> = ({ time }) => {
     return (
         <Flex
             gap={'2px'}
@@ -22,7 +22,7 @@ export const TimeOfAction: FC<{ time: number }> = ({ time }) => {
                 fontSize={'12px'}
                 color={'#9F9F9F'} // с бэкэнда
             >
-                Заканчивается через {time} дня
+                {time}
             </StyledP>
         </Flex>
     )

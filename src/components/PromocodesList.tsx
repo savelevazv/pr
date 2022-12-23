@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Card } from "./components/Card/Card";
-import { Grid } from "./styles/Grid.styled";
-import { PromocodeProps } from "./assets/types";
+import { Card } from "./Card/Card";
+import { Grid } from "../styles/Grid.styled";
+import { PromocodeProps } from "../assets/types";
 
 export interface PromocodeListProps {
     promocodesListData: PromocodeProps[]

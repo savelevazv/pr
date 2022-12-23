@@ -7,7 +7,6 @@ export const CenteredLayout: FC<{ children: ReactNode }> = ({ children }) => {
         <Flex
             justify={'center'}
             align={'flex-start'}
-            wrap={'wrap'}
             width={'100%'}
         >
             {children}

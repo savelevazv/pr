@@ -2,19 +2,20 @@ import React, { FC, ReactNode } from 'react';
 import { StyledContactsBtn } from './Buttons.styled';
 import { Flex } from '../../styles/Flex.styled';
 import { StyledP } from '../../styles/Fonts.styled';
+import { BaseLinkProps, LinkProps, TitleProps } from '../Link';
+import { Link } from 'react-router-dom';
 
-interface ContactsBtnProps {
-    svg: ReactNode
-    title: string
-    target: string
-    href: string
+interface ContactsBtnProps extends IconProps, TitleProps, Omit<LinkProps, "children"> { }
+
+export interface IconProps {
+    icon: ReactNode
 }
 
-export const ContactsBtn: FC<ContactsBtnProps> = ({ svg, title, target, href }): JSX.Element => {
+export const ContactsBtn: FC<ContactsBtnProps> = ({ to, title, target, icon }): JSX.Element => {
     return (
-        <a
+        <Link
             target={target}
-            href={href}
+            to={to}
         >
             <Flex
                 direction={'column'}
@@ -22,7 +23,7 @@ export const ContactsBtn: FC<ContactsBtnProps> = ({ svg, title, target, href }):
                 align={'center'}
             >
                 <StyledContactsBtn>
-                    {svg}
+                    {icon}
                 </StyledContactsBtn>
                 <StyledP
                     fontSize={'10px'}
@@ -31,6 +32,6 @@ export const ContactsBtn: FC<ContactsBtnProps> = ({ svg, title, target, href }):
                     {title}
                 </StyledP>
             </Flex>
-        </a>
+        </Link>
     )
 }

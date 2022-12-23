@@ -12,3 +12,8 @@ export interface shopsSliceState {
     isLoading: boolean
     error: string
 }
+
+export interface searchSliceState {
+    searchValue: string
+    foundShops: Shop[]
+}

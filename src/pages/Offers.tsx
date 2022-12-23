@@ -7,7 +7,7 @@ import { Flex } from '../styles/Flex.styled'
 import { StyledH3 } from '../styles/Fonts.styled'
 import { DiscountCard, SimilarStores } from './ShopPage'
 import { StyledSortShopsBtnSecondary } from '../components/Buttons/Buttons.styled'
-import { Link } from '../Link'
+import { Link } from '../components/Link'
 import { arrCategoriesTranslit } from '../data/data'
 import { Pagination } from '../components/Pagination'
 
@@ -40,8 +40,8 @@ export const Offers: FC = () => {
                             title={'title'}
                             recommendation={true}
                             promocode={'test'}
-                            usage={10}
-                            time={1}
+                            usage={'Воспользовались 10 раз'}
+                            time={'Заканчивается через 2 дня'}
 
                         />
                         <DiscountCard
@@ -51,8 +51,8 @@ export const Offers: FC = () => {
                             terms={'Условия'}
                             recommendation={false}
                             promocode={'test22'}
-                            usage={20}
-                            time={2}
+                            usage={'Воспользовались 10 раз'}
+                            time={'Заканчивается через 2 дня'}
                         />
                     </Flex>
                     <Flex

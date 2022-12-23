@@ -3,10 +3,10 @@ import { Flex } from "../../../styles/Flex.styled";
 import CountUp from 'react-countup';
 import { StyledSpan } from "../../../styles/Fonts.styled";
 import { Div } from "../../../styles/Div.styled";
+import { BaseLinkProps, TitleProps } from "../../Link";
 
-interface NumElementProps {
+interface NumElementProps extends TitleProps {
     number: number
-    title: string
 }
 
 export const NumElement: FC<NumElementProps> = ({ number, title }): JSX.Element => {

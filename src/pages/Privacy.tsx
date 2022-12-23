@@ -1,22 +1,17 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { CenteredLayout } from "../components/Layouts/CenteredLayout";
 import { CenteredLayoutBody } from "../components/Layouts/CenteredLayoutBody";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { Flex } from "../styles/Flex.styled";
 import { StyledH1, StyledH2, StyledH3, StyledP } from "../styles/Fonts.styled";
 
-interface PrivacyPointProps {
+export interface PrivacyPointProps {
     title: string
     info: ReactNode
 }
 
-export interface dataPrivacyArType extends PrivacyPointProps {
-    id: number
-}
-
-const dataPrivacyArray = [
+const dataPrivacyArr = [
     {
-        id: 1,
         title: '1. ОПРЕДЕЛЕНИЕ ТЕРМИНОВ',
         info: <>
             1.1 В настоящей Политике конфиденциальности используются следующие термины:<br />
@@ -30,7 +25,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 2,
         title: '2. ОБЩИЕ ПОЛОЖЕНИЯ',
         info: <>
             2.1. Использование Пользователем сайта Сервиса означает согласие с настоящей Политикой конфиденциальности и условиями обработки персональных данных Пользователя.<br />
@@ -40,7 +34,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 3,
         title: '3. ПРЕДМЕТ ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ',
         info: <>
             3.1. Настоящая Политика конфиденциальности устанавливает обязательства Администрации сайта Сервиса по неразглашению и обеспечению режима защиты конфиденциальности персональных данных, которые Пользователь предоставляет по запросу Администрации сайта при регистрации на сайте Сервиса или при подписке на рассылку.<br />
@@ -59,7 +52,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 4,
         title: '4. ЦЕЛИ СБОРА ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ ПОЛЬЗОВАТЕЛЯ',
         info: <>
             4.1. Персональные данные Пользователя Администрация сайта Сервиса может использовать в целях:<br />
@@ -75,7 +67,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 5,
         title: '5. СПОСОБЫ И СРОКИ ОБРАБОТКИ ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ',
         info: <>
             5.1. Обработка персональных данных Пользователя осуществляется без ограничения срока, любым законным способом, в том числе в информационных системах персональных данных с использованием средств автоматизации или без использования таких средств.<br />
@@ -88,7 +79,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 6,
         title: '6. ОБЯЗАТЕЛЬСТВА СТОРОН',
         info: <>
             6.1. Пользователь обязан:<br />
@@ -102,7 +92,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 7,
         title: '7. ОТВЕТСТВЕННОСТЬ СТОРОН',
         info: <>
             7.1. Администрация сайта, не исполнившая свои обязательства, несёт ответственность за убытки, понесённые Пользователем в связи с неправомерным использованием персональных данных, в соответствии с законодательством Российской Федерации, за исключением случаев, предусмотренных п.п. 5.2., 5.3. и 7.2. настоящей Политики Конфиденциальности.<br />
@@ -113,7 +102,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 8,
         title: '8. РАЗРЕШЕНИЕ СПОРОВ',
         info: <>
             8.1. До обращения в суд с иском по спорам, возникающим из отношений между Пользователем сайта Сервиса и Администрацией сайта, обязательным является предъявление претензии (письменного предложения о добровольном урегулировании спора).<br />
@@ -123,7 +111,6 @@ const dataPrivacyArray = [
         </>
     },
     {
-        id: 9,
         title: '9. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ',
         info: <>
             9.1. Администрация сайта вправе вносить изменения в настоящую Политику конфиденциальности без согласия Пользователя.<br />
@@ -134,7 +121,7 @@ const dataPrivacyArray = [
     },
 ]
 
-type dataPrivacyArray = Array<dataPrivacyArType>
+type dataPrivacyArr = Array<PrivacyPointProps>
 
 export const PrivacyPoint: FC<PrivacyPointProps> = ({ title, info }) => {
     return (
@@ -181,10 +168,10 @@ export const Privacy: FC = () => {
                         которую Сервис «Promocodeshub» на доменном имени promocodeshub.ru может получить о Пользователе во время использования сайта Сервиса,
                         программ и продуктов Сервиса.
                     </StyledP>
-                    {dataPrivacyArray.map((el) => {
+                    {dataPrivacyArr.map((el) => {
                         return (
                             <PrivacyPoint
-                                key={el.id}
+                                key={el.title}
                                 title={el.title}
                                 info={el.info}
                             />

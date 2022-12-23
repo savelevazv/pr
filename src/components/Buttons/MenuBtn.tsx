@@ -29,6 +29,10 @@ const StyledMenuBtn = styled(StyledDefaultBtn)`
         background-color: #FFE8E4;
         border-radius: 50%;
         position: relative;
+        @media (max-width: 999.5px) {
+            width: 40px;
+            height: 40px;
+          }
     }
 `
 

@@ -298,13 +298,14 @@ export const StyledCopyBtn = styled(StyledDefaultBtn) <StyledDrawerProps>`
         right: 0;
         height: 100%;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 16px;
         color: ${props => props.active ? '#31A169' : '#9F9F9F'};
         border: ${props => props.active ? '2px solid #31A169' : '2px solid #9F9F9F'};
         border-radius: 14px;
         background-color: #FFFFFF;
         padding: 16px 17px;
         transition: all 0.3s ease-in-out;
+        width: 165px;
 
         path {
             fill: ${props => props.active ? '#31A169' : ''};

@@ -1,19 +1,16 @@
-import React, { FC, MouseEvent, ReactNode, useEffect, useRef } from "react";
+import { FC, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import { Div } from "../styles/Div.styled";
 import { Flex } from "../styles/Flex.styled";
-import { Link } from "../Link";
+import { BaseLinkProps, Link } from "./Link";
 import { useAppDispatch, useAppSelector } from "../store/hooks/hooks";
 import { CloseBtn } from "./Buttons/CloseBtn";
 import { ContactsBtn } from "./Buttons/ContactsBtn";
 import { StyledSpan } from "../styles/Fonts.styled";
-import { StyledLink } from "../styles/Link.styled";
 import { useMediaQuery } from "react-responsive";
 import { setMenu } from "../store/reducers/menuReducer";
-import { StyledDefaultBtn, StyledSortBtn } from "./Buttons/Buttons.styled";
-
-// доработать меню (отрисовка)
-// вынести данные
+import { StyledSortBtn } from "./Buttons/Buttons.styled";
+import { CarouselProps } from "./BestPromotions";
 
 const menuLinks = [
     {
@@ -82,23 +79,17 @@ const menuLinks = [
     }
 ]
 
-interface LinkArr {
+interface MenuLinksArr extends BaseLinkProps {
     icon: ReactNode
-    to: string
-    title: string
 }
 
-type menuLinks = Array<LinkArr>
+type menuLinks = Array<MenuLinksArr>
 
 const StyledDivider = styled(Div)`
     & {
         border-bottom: 1px solid #F3F3F3;
         width: 100%;
     }
-`
-
-const Overlay = styled(Div)`
-    transition: visibility 0.3s;
 `
 
 export interface StyledDrawerProps {
@@ -112,10 +103,21 @@ const StyledDrawer = styled(Flex) <StyledDrawerProps>`
     }
 `
 
-const StyledMobileMenuContainer = styled(Div)`
+export const StyledOverlay = styled(Div) <StyledDrawerProps>`
     & {
-        transition: visibility 0.3s;
+        transition: opacity 0.2s ease-in-out;
+        ${props => props.active
+        ? css`
+                opacity: 1;
+                pointer-events: all;
+
+            `
+        : css`
+                opacity: 0;
+                pointer-events: none;
+                `
     }
+        }
 `
 
 const StyledMobileMenu = styled(Flex) <StyledDrawerProps>`
@@ -145,35 +147,35 @@ const StyledDrawerBtn = styled(StyledSortBtn)`
 `
 
 export const Drawer: FC = () => {
+    const menuState = useAppSelector(state => state.menu.value)
     const dispatch = useAppDispatch()
     const isTablet = useMediaQuery({ query: '(max-width: 999.5px)' })
-    const menuState = useAppSelector(state => state.menu.value)
 
     return (
         <>
             {
                 isTablet ? (
-                    <StyledMobileMenuContainer
+                    <StyledOverlay
                         width={'100%'}
                         height={'100%'}
                         position={'fixed'}
                         left={'0'}
                         top={'0'}
                         backgroundColor={'rgba(0,0,0,.8)'}
-                        visibility={menuState ? 'visible' : 'hidden'}
+                        active={menuState}
                         onClick={() => dispatch(setMenu(false))}
                         cursor={'pointer'}
                         zIndex={1}
                     >
                         <StyledMobileMenu
-                            active={menuState && true}
+                            active={menuState}
                             position={'absolute'}
                             direction={'column'}
                             align={'flex-start'}
                             width={'100%'}
                             maxHeight={'448px'}
                             zIndex={1}
-                            top={'86px'}
+                            top={'70px'}
                             backgroundColor={'#FFF'}
                             padding={'16px 16px 40px 16px'}
                             onClick={e => e.stopPropagation()}
@@ -182,7 +184,7 @@ export const Drawer: FC = () => {
                             {menuLinks.map((el) => {
                                 return (
                                     <Link
-                                        width={'100%'} // решить проблему
+                                        width={'100%'}
                                         key={el.title}
                                         to={el.to}
                                     >
@@ -213,8 +215,8 @@ export const Drawer: FC = () => {
                             >
                                 <ContactsBtn
                                     target={'_blank'}
-                                    href={'https://vk.com/promohubru'}
-                                    svg={
+                                    to={'https://vk.com/promohubru'}
+                                    icon={
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clipPath="url(#clip0_319_2956)">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M29.3125 7.435C29.52 6.7525 29.3125 6.25 28.3187 6.25H25.0375C24.2025 6.25 23.8175 6.68375 23.6087 7.1625C23.6087 7.1625 21.94 11.1575 19.5762 13.7525C18.8112 14.505 18.4637 14.7437 18.0462 14.7437C17.8375 14.7437 17.5237 14.505 17.5237 13.8212V7.435C17.5237 6.615 17.2937 6.25 16.5987 6.25H11.4387C10.9175 6.25 10.6037 6.63 10.6037 6.99125C10.6037 7.7675 11.7862 7.9475 11.9075 10.1325V14.88C11.9075 15.9213 11.7162 16.11 11.2987 16.11C10.1862 16.11 7.48 12.0962 5.87375 7.50375C5.5625 6.61 5.2475 6.25 4.40875 6.25H1.125C0.1875 6.25 0 6.68375 0 7.1625C0 8.015 1.1125 12.25 5.18125 17.8512C7.89375 21.6763 11.7125 23.75 15.1912 23.75C17.2775 23.75 17.535 23.29 17.535 22.4963V19.605C17.535 18.6838 17.7325 18.5 18.3937 18.5C18.8812 18.5 19.715 18.74 21.6625 20.5837C23.8875 22.77 24.2537 23.75 25.5062 23.75H28.7875C29.725 23.75 30.195 23.29 29.925 22.38C29.6275 21.475 28.565 20.1613 27.1562 18.6025C26.3912 17.715 25.2437 16.7587 24.895 16.28C24.4087 15.6663 24.5475 15.3925 24.895 14.8462C24.895 14.8462 28.895 9.31375 29.3112 7.435H29.3125Z" fill="#FF654E" />
@@ -230,8 +232,8 @@ export const Drawer: FC = () => {
                                 />
                                 <ContactsBtn
                                     target={''}
-                                    href={''} // добавить рабочую ссылку
-                                    svg={
+                                    to={''} // добавить рабочую ссылку
+                                    icon={
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_966_6)">
                                                 <path d="M30 12.5V23.75C29.998 25.407 29.3389 26.9956 28.1672 28.1672C26.9956 29.3389 25.407 29.998 23.75 30H6.25C4.59301 29.998 3.00445 29.3389 1.83277 28.1672C0.661102 26.9956 0.00198482 25.407 0 23.75L0 10C0.00198482 8.34301 0.661102 6.75445 1.83277 5.58277C3.00445 4.4111 4.59301 3.75198 6.25 3.75H16.25C16.5815 3.75 16.8995 3.8817 17.1339 4.11612C17.3683 4.35054 17.5 4.66848 17.5 5C17.5 5.33152 17.3683 5.64946 17.1339 5.88388C16.8995 6.1183 16.5815 6.25 16.25 6.25H6.25C5.57026 6.25188 4.9039 6.4391 4.32265 6.79151C3.74139 7.14392 3.26725 7.64817 2.95125 8.25L12.3475 17.6475C13.0521 18.3488 14.0058 18.7426 15 18.7426C15.9942 18.7426 16.9479 18.3488 17.6525 17.6475L22.4288 12.875C22.6645 12.6473 22.9803 12.5213 23.308 12.5242C23.6357 12.527 23.9493 12.6585 24.181 12.8902C24.4128 13.122 24.5442 13.4355 24.5471 13.7632C24.5499 14.091 24.4239 14.4067 24.1963 14.6425L19.42 19.42C18.2466 20.59 16.6571 21.247 15 21.247C13.3429 21.247 11.7534 20.59 10.58 19.42L2.5 11.3388V23.75C2.5 24.7446 2.89509 25.6984 3.59835 26.4017C4.30161 27.1049 5.25544 27.5 6.25 27.5H23.75C24.7446 27.5 25.6984 27.1049 26.4017 26.4017C27.1049 25.6984 27.5 24.7446 27.5 23.75V12.5C27.5 12.1685 27.6317 11.8505 27.8661 11.6161C28.1005 11.3817 28.4185 11.25 28.75 11.25C29.0815 11.25 29.3995 11.3817 29.6339 11.6161C29.8683 11.8505 30 12.1685 30 12.5V12.5ZM21.25 6.25H23.75V8.75C23.75 9.08152 23.8817 9.39946 24.1161 9.63388C24.3505 9.8683 24.6685 10 25 10C25.3315 10 25.6495 9.8683 25.8839 9.63388C26.1183 9.39946 26.25 9.08152 26.25 8.75V6.25H28.75C29.0815 6.25 29.3995 6.1183 29.6339 5.88388C29.8683 5.64946 30 5.33152 30 5C30 4.66848 29.8683 4.35054 29.6339 4.11612C29.3995 3.8817 29.0815 3.75 28.75 3.75H26.25V1.25C26.25 0.918479 26.1183 0.600537 25.8839 0.366117C25.6495 0.131696 25.3315 0 25 0C24.6685 0 24.3505 0.131696 24.1161 0.366117C23.8817 0.600537 23.75 0.918479 23.75 1.25V3.75H21.25C20.9185 3.75 20.6005 3.8817 20.3661 4.11612C20.1317 4.35054 20 4.66848 20 5C20 5.33152 20.1317 5.64946 20.3661 5.88388C20.6005 6.1183 20.9185 6.25 21.25 6.25Z" fill="#FF654E" />
@@ -247,9 +249,9 @@ export const Drawer: FC = () => {
                                 />
                             </Flex>
                         </StyledMobileMenu>
-                    </StyledMobileMenuContainer>
+                    </StyledOverlay>
                 ) : (
-                    <Overlay
+                    <StyledOverlay
                         width={'100%'}
                         height={'100%'}
                         position={'fixed'}
@@ -258,11 +260,11 @@ export const Drawer: FC = () => {
                         backgroundColor={'rgba(0,0,0,.8)'}
                         onClick={() => dispatch(setMenu(false))}
                         cursor={'pointer'}
-                        visibility={menuState ? 'visible' : 'hidden'}
-                        zIndex={100}
+                        active={menuState}
+                        zIndex={50}
                     >
                         <StyledDrawer
-                            active={menuState && true}
+                            active={menuState}
                             padding={'40px 20px'}
                             position={'absolute'}
                             direction={'column'}
@@ -316,8 +318,8 @@ export const Drawer: FC = () => {
                             >
                                 <ContactsBtn
                                     target={'_blank'}
-                                    href={'https://vk.com/promohubru'}
-                                    svg={
+                                    to={'https://vk.com/promohubru'}
+                                    icon={
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clipPath="url(#clip0_319_2956)">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M29.3125 7.435C29.52 6.7525 29.3125 6.25 28.3187 6.25H25.0375C24.2025 6.25 23.8175 6.68375 23.6087 7.1625C23.6087 7.1625 21.94 11.1575 19.5762 13.7525C18.8112 14.505 18.4637 14.7437 18.0462 14.7437C17.8375 14.7437 17.5237 14.505 17.5237 13.8212V7.435C17.5237 6.615 17.2937 6.25 16.5987 6.25H11.4387C10.9175 6.25 10.6037 6.63 10.6037 6.99125C10.6037 7.7675 11.7862 7.9475 11.9075 10.1325V14.88C11.9075 15.9213 11.7162 16.11 11.2987 16.11C10.1862 16.11 7.48 12.0962 5.87375 7.50375C5.5625 6.61 5.2475 6.25 4.40875 6.25H1.125C0.1875 6.25 0 6.68375 0 7.1625C0 8.015 1.1125 12.25 5.18125 17.8512C7.89375 21.6763 11.7125 23.75 15.1912 23.75C17.2775 23.75 17.535 23.29 17.535 22.4963V19.605C17.535 18.6838 17.7325 18.5 18.3937 18.5C18.8812 18.5 19.715 18.74 21.6625 20.5837C23.8875 22.77 24.2537 23.75 25.5062 23.75H28.7875C29.725 23.75 30.195 23.29 29.925 22.38C29.6275 21.475 28.565 20.1613 27.1562 18.6025C26.3912 17.715 25.2437 16.7587 24.895 16.28C24.4087 15.6663 24.5475 15.3925 24.895 14.8462C24.895 14.8462 28.895 9.31375 29.3112 7.435H29.3125Z" fill="#FF654E" />
@@ -333,8 +335,8 @@ export const Drawer: FC = () => {
                                 />
                                 <ContactsBtn
                                     target={''}
-                                    href={''} // добавить рабочую ссылку
-                                    svg={
+                                    to={''} // добавить рабочую ссылку
+                                    icon={
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_966_6)">
                                                 <path d="M30 12.5V23.75C29.998 25.407 29.3389 26.9956 28.1672 28.1672C26.9956 29.3389 25.407 29.998 23.75 30H6.25C4.59301 29.998 3.00445 29.3389 1.83277 28.1672C0.661102 26.9956 0.00198482 25.407 0 23.75L0 10C0.00198482 8.34301 0.661102 6.75445 1.83277 5.58277C3.00445 4.4111 4.59301 3.75198 6.25 3.75H16.25C16.5815 3.75 16.8995 3.8817 17.1339 4.11612C17.3683 4.35054 17.5 4.66848 17.5 5C17.5 5.33152 17.3683 5.64946 17.1339 5.88388C16.8995 6.1183 16.5815 6.25 16.25 6.25H6.25C5.57026 6.25188 4.9039 6.4391 4.32265 6.79151C3.74139 7.14392 3.26725 7.64817 2.95125 8.25L12.3475 17.6475C13.0521 18.3488 14.0058 18.7426 15 18.7426C15.9942 18.7426 16.9479 18.3488 17.6525 17.6475L22.4288 12.875C22.6645 12.6473 22.9803 12.5213 23.308 12.5242C23.6357 12.527 23.9493 12.6585 24.181 12.8902C24.4128 13.122 24.5442 13.4355 24.5471 13.7632C24.5499 14.091 24.4239 14.4067 24.1963 14.6425L19.42 19.42C18.2466 20.59 16.6571 21.247 15 21.247C13.3429 21.247 11.7534 20.59 10.58 19.42L2.5 11.3388V23.75C2.5 24.7446 2.89509 25.6984 3.59835 26.4017C4.30161 27.1049 5.25544 27.5 6.25 27.5H23.75C24.7446 27.5 25.6984 27.1049 26.4017 26.4017C27.1049 25.6984 27.5 24.7446 27.5 23.75V12.5C27.5 12.1685 27.6317 11.8505 27.8661 11.6161C28.1005 11.3817 28.4185 11.25 28.75 11.25C29.0815 11.25 29.3995 11.3817 29.6339 11.6161C29.8683 11.8505 30 12.1685 30 12.5V12.5ZM21.25 6.25H23.75V8.75C23.75 9.08152 23.8817 9.39946 24.1161 9.63388C24.3505 9.8683 24.6685 10 25 10C25.3315 10 25.6495 9.8683 25.8839 9.63388C26.1183 9.39946 26.25 9.08152 26.25 8.75V6.25H28.75C29.0815 6.25 29.3995 6.1183 29.6339 5.88388C29.8683 5.64946 30 5.33152 30 5C30 4.66848 29.8683 4.35054 29.6339 4.11612C29.3995 3.8817 29.0815 3.75 28.75 3.75H26.25V1.25C26.25 0.918479 26.1183 0.600537 25.8839 0.366117C25.6495 0.131696 25.3315 0 25 0C24.6685 0 24.3505 0.131696 24.1161 0.366117C23.8817 0.600537 23.75 0.918479 23.75 1.25V3.75H21.25C20.9185 3.75 20.6005 3.8817 20.3661 4.11612C20.1317 4.35054 20 4.66848 20 5C20 5.33152 20.1317 5.64946 20.3661 5.88388C20.6005 6.1183 20.9185 6.25 21.25 6.25Z" fill="#FF654E" />
@@ -350,7 +352,7 @@ export const Drawer: FC = () => {
                                 />
                             </Flex>
                         </StyledDrawer>
-                    </Overlay >
+                    </StyledOverlay >
                 )
             }
         </>

@@ -1,5 +1,3 @@
-import React, { ReactNode } from "react";
-
 export type PromocodeProps = {
     id?: number
     discount: string
@@ -7,9 +5,8 @@ export type PromocodeProps = {
     title: string
     shop_name?: string
     promocode: string
-    usage: number
-    time: number
+    usage: string
+    time: string
     logo_Url?: string
     logo_Alt?: string
-    date_end?: string
 }

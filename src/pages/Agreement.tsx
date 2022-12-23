@@ -1,14 +1,13 @@
-import React, { FC, ReactNode } from "react";
+import { FC } from "react";
 import { CenteredLayout } from "../components/Layouts/CenteredLayout";
 import { CenteredLayoutBody } from "../components/Layouts/CenteredLayoutBody";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { Flex } from "../styles/Flex.styled";
 import { StyledH1, StyledH2, StyledP } from "../styles/Fonts.styled";
-import { dataPrivacyArType, PrivacyPoint } from "./Privacy";
+import { PrivacyPoint, PrivacyPointProps } from "./Privacy";
 
-const dataAgreementArray = [
+const dataAgreementArr = [
     {
-        id: 1,
         title: '1. ПОНЯТИЯ И ТЕРМИНЫ СОГЛАШЕНИЯ',
         info: <>
             Для целей настоящего Соглашения используются основные понятия.<br />
@@ -23,7 +22,6 @@ const dataAgreementArray = [
         </>
     },
     {
-        id: 2,
         title: '2.  УСЛОВИЯ ИСПОЛЬЗОВАНИЯ САЙТА (ПЛОЩАДКИ) ПОЛЬЗОВАТЕЛЯМИ. ДЕЙСТВИЕ СОГЛАШЕНИЯ',
         info: <>
             2.1. Пользователь использует Сайт и Площадку добровольно. Получая доступ к материалам и сервисам Сайта либо начиная использовать какой-либо сервис, Пользователь считается безоговорочно присоединившимся к настоящему Соглашению, а также считается ознакомленным и согласным с Политикой обработки персональных данных при совершении одного из вышеуказанных действий. Использование материалов и сервисов Сайта допускается исключительно при условии безоговорочного присоединения к настоящему Пользовательскому соглашению.<br />
@@ -66,7 +64,6 @@ const dataAgreementArray = [
         </>
     },
     {
-        id: 3,
         title: '3. ПРАВА АДМИНИСТРАЦИИ САЙТА',
         info: <>
             3.1. Администрация Сайта вправе устанавливать ограничения в использовании Сайта для всех Пользователей либо для отдельных категорий Пользователей.<br />
@@ -81,7 +78,6 @@ const dataAgreementArray = [
         </>
     },
     {
-        id: 4,
         title: '4. ОТСУТСТВИЕ ГАРАНТИЙ, ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ',
         info: <>
             4.1. Пользователь использует сервисы Площадки на свой риск. Сервисы предоставляются как есть. Администрация Сайта не принимает на себя никакой ответственности, в том числе за соответствие сервисов Площадки целям Пользователя.<br />
@@ -114,7 +110,6 @@ const dataAgreementArray = [
         </>
     },
     {
-        id: 5,
         title: '5. ПРОЧИЕ УСЛОВИЯ',
         info: <>
             5.1. Использование Сайта регулируется настоящим Соглашением, Политикой обработки персональных данных, а также законодательством Российской Федерации по всем вопросам, не урегулированным настоящим Соглашением или Политикой обработки персональных данных.<br />
@@ -129,7 +124,7 @@ const dataAgreementArray = [
     }
 ]
 
-type dataAgreementArray = Array<dataPrivacyArType>
+type dataAgreementArr = Array<PrivacyPointProps>
 
 export const Agreement: FC = () => {
     return (
@@ -158,10 +153,10 @@ export const Agreement: FC = () => {
                         Настоящее Соглашение (далее – Соглашение) является публичной офертой и определяет условия использования материалов и сервисов, размещенных на сайте в сети Интернет по адресу promocodeshub.ru, Пользователями данного интернет-сайта.
                         Соглашение вступает в силу с момента выражения Пользователем согласия с его условиями в порядке, предусмотренном п. 2.1 Соглашения.
                     </StyledP>
-                    {dataAgreementArray.map((el) => {
+                    {dataAgreementArr.map((el) => {
                         return (
                             <PrivacyPoint
-                                key={el.id}
+                                key={el.title}
                                 title={el.title}
                                 info={el.info}
                             />

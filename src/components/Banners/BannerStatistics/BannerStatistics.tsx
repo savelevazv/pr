@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Div } from "../../../styles/Div.styled";
 import { Flex } from "../../../styles/Flex.styled";
-import { Link } from "../../../Link";
+import { Link } from "../../Link";
 import { StyledBannerStatisticsBtn } from "../../Buttons/Buttons.styled";
 import { StyledSpan } from "../../../styles/Fonts.styled";
 import { NumElement } from "./NumElement";

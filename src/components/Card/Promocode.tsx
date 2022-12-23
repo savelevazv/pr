@@ -2,19 +2,20 @@ import React, { FC } from "react";
 import { Flex } from "../../styles/Flex.styled";
 import { StyledSpan } from "../../styles/Fonts.styled";
 import { useAppDispatch } from "../../store/hooks/hooks";
-import { openModal } from "../../store/reducers/modalReducer";
 import { StyledPromocodeBtn } from "../Buttons/Buttons.styled";
 import { StyledPromocodeSpan } from "./Card.styled";
+import { setModal } from "../../store/reducers/modalReducer";
 
 export const Promocode: FC<{ promocode: string }> = ({ promocode }) => {
     const dispatch = useAppDispatch()
 
     return (
         <StyledPromocodeBtn
-            onClick={() => dispatch(openModal())}
+            onClick={() => dispatch(setModal(true))}
         >
             <Flex
                 align={'center'}
+                justify={'center'}
                 width={'180px'}
                 height={'40px'}
                 backgroundColor={'#FF654E'}
@@ -25,8 +26,10 @@ export const Promocode: FC<{ promocode: string }> = ({ promocode }) => {
             >
                 <StyledSpan
                     color={'#FFFFFF'}
+                    fontSize={'16px'}
+
                 >
-                    ОТКРЫТЬ ПРОМОКОД
+                    Открыть промокод
                 </StyledSpan>
             </Flex>
             <svg style={{ marginLeft: '-4px' }} width="10" height="40" viewBox="0 0 10 40" fill="none" xmlns="http://www.w3.org/2000/svg">

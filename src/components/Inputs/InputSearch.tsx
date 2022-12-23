@@ -5,36 +5,19 @@ import { Flex } from "../../styles/Flex.styled";
 import { RoundBtn } from "../Buttons/RoundBtn";
 import { StyledInputSearch } from "./Inputs.styled";
 import { StyledBannerStatisticsBtn } from "../Buttons/Buttons.styled";
-
 import { useAppDispatch, useAppSelector } from "../../store/hooks/hooks";
-import { setSearchValue } from "../../store/reducers/searchReducer";
+import { setFoundShops, setSearchValue } from "../../store/reducers/searchReducer";
 import axios from 'axios';
-import { Shop } from "../../store/types";
 import { CircularProgress } from "@mui/material";
-import { StyledP } from "../../styles/Fonts.styled";
 import { StyledLink } from "../../styles/Link.styled";
-import { Link } from "../../Link";
+import { Link } from "../Link";
+import { EmptyBlock } from "../SearchBlocks/EmptyBlock";
+import { SearchBlock } from "../SearchBlocks/SearchBlock";
 
 const StyledInputContainer = styled(Flex)`
     & {
         transition: border 0.15s ease-in-out;
     }
-`
-
-const StyledSearchContentContainer = styled(Div)`
-    & {
-        text-align: center;
-    }
-    
-    &::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #F3F3F3;
-  }
-
 `
 
 const StyledFoundShopsLink = styled(StyledLink)`
@@ -51,17 +34,17 @@ const StyledFoundShopsLink = styled(StyledLink)`
 export const InputSeach: FC = (): JSX.Element => {
     const [activeInput, setActiveInput] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [foundShops, setFoundShops] = useState<Shop[]>([])
     const searchValue = useAppSelector(state => state.search.searchValue)
+    const foundShops = useAppSelector(state => state.search.foundShops)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         (async () => {
             setIsLoading(true)
             try {
-                const searchResponce = await axios.get(`https://63870765e399d2e473f2752a.mockapi.io/shops?name=${searchValue}`)
+                const searchResponce = await axios.get(`https://63870765e399d2e473f2752a.mockapi.io/shops?name=${searchValue}`) // лимит
                 setTimeout(() => setIsLoading(false), 500)
-                setFoundShops(searchResponce.data)
+                dispatch(setFoundShops(searchResponce.data))
             } catch (error) {
                 console.error(error)
             }
@@ -109,7 +92,7 @@ export const InputSeach: FC = (): JSX.Element => {
                     padding={'0px 16px'}
                 >
                     {
-                        (searchValue && isLoading === false) ?
+                        searchValue && isLoading === false ?
                             (
                                 <RoundBtn
                                     onClick={() => dispatch(setSearchValue(''))}
@@ -136,75 +119,51 @@ export const InputSeach: FC = (): JSX.Element => {
                 </Flex>
                 {
                     activeInput && searchValue && isLoading === false &&
-                    <Div
-                        backgroundColor={'#FFFFFF'}
-                        position={'absolute'}
-                        top={'100%'}
-                        br={'14px'}
-                        boxShadow={' 0px 1px 20px rgba(0, 0, 0, 0.15)'}
-                        padding={'16px 8px 16px 16px'}
-                        width={'100%'}
-                    >
-                        <StyledSearchContentContainer
-                            overflowY={'auto'}
-                            overflowX={'hidden'}
-                            maxHeight={'276px'}
-                            pr={'8px'}
+                    <SearchBlock>
+                        <Flex
+                            direction={'column'}
                         >
-                            <Flex
-                                direction={'column'}
-                            >
-                                {foundShops.map((el) => {
-                                    return (
-                                        <StyledFoundShopsLink
-                                            key={el.id}
-                                            colorHover={'#FF654E'}
-                                            fontWeight={'500'}
-                                            fontSize={'14px'}
-                                            backgroundColorHover={'#F5F2F2'}
-                                            href={`/shops/${el.translit_shop_name}`}
-                                            padding={'16px'}
-                                        >
-                                            <Div
-                                                mr={'16px'}
-                                            >
-                                                <img style={{ borderRadius: '14px' }} src={el.logo} />
-                                            </Div>
-                                            {el.name}
-                                        </StyledFoundShopsLink>
-                                    )
-                                })}
-                            </Flex>
-                            {
-                                foundShops.length == 0 ? (
-                                    <Flex
-                                        justify={'center'}
-                                        align={'center'}
-                                        gap={'2px'}
+                            {foundShops.map((el) => {
+                                return (
+                                    <StyledFoundShopsLink
+                                        key={el.id}
+                                        colorHover={'#FF654E'}
+                                        fontWeight={'500'}
+                                        fontSize={'14px'}
+                                        backgroundColorHover={'#F5F2F2'}
+                                        href={`/shops/${el.translit_shop_name}`}
+                                        padding={'16px'}
                                     >
-                                        <StyledP>
-                                            К сожалению, ничего не найдено
-                                        </StyledP>
-                                        <img width={16} height={16} src="/img/sad-emoji.png" alt="sad-emoji" />
-                                    </Flex>
-                                ) : (
-                                    <Div
-                                        mt={'16px'}
-                                    >
-                                        <Link
-                                            to={'/'} // добавить нормальную ссылку
+                                        <Div
+                                            mr={'16px'}
                                         >
-                                            <StyledBannerStatisticsBtn
-                                                backgroundColor={'#F3F3F3'}
-                                            >
-                                                Показать все
-                                            </StyledBannerStatisticsBtn>
-                                        </Link>
-                                    </Div>
+                                            <img style={{ borderRadius: '14px' }} src={el.logo} />
+                                        </Div>
+                                        {el.name}
+                                    </StyledFoundShopsLink>
                                 )
-                            }
-                        </StyledSearchContentContainer>
-                    </Div>
+                            })}
+                        </Flex>
+                        {
+                            foundShops.length == 0 ? (
+                                <EmptyBlock />
+                            ) : (
+                                <Div
+                                    mt={'16px'}
+                                >
+                                    <Link
+                                        to={'/search'}
+                                    >
+                                        <StyledBannerStatisticsBtn
+                                            backgroundColor={'#F3F3F3'}
+                                        >
+                                            Показать все
+                                        </StyledBannerStatisticsBtn>
+                                    </Link>
+                                </Div>
+                            )
+                        }
+                    </SearchBlock>
                 }
             </StyledInputContainer>
         </Div>

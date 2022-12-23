@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Flex } from "../styles/Flex.styled";
-import { PromocodeListProps, PromocodesList } from "../PromocodesList";
 import { StyledH1 } from "../styles/Fonts.styled";
+import { PromocodeListProps, PromocodesList } from "./PromocodesList";
 
 export const Popular: FC<PromocodeListProps> = ({ promocodesListData }): JSX.Element => {
     return (

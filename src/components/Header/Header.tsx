@@ -4,7 +4,7 @@ import { Div } from "../../styles/Div.styled";
 import { Flex } from "../../styles/Flex.styled";
 import { StyledSpan } from "../../styles/Fonts.styled";
 import { InputSeach } from "../Inputs/InputSearch";
-import { Link } from "../../Link";
+import { Link } from "../Link";
 import { MenuBtn } from "../Buttons/MenuBtn";
 import { CenteredLayout } from "../Layouts/CenteredLayout";
 import { CenteredLayoutBody } from "../Layouts/CenteredLayoutBody";
@@ -14,6 +14,8 @@ import { useMediaQuery } from 'react-responsive'
 import { StyledShopsMobileBtn } from "../Buttons/Buttons.styled";
 
 export const Header: FC = (): JSX.Element => {
+    const isMobile = useMediaQuery({ query: '(min-width: 320px) and (max-width: 479px)' })
+    const isMobile480 = useMediaQuery({ query: '(min-width: 480px) and (max-width: 767px)' })
     const isTablet = useMediaQuery({ query: '(max-width: 999.5px)' })
 
     return (
@@ -36,28 +38,25 @@ export const Header: FC = (): JSX.Element => {
                                             to={'/'}
                                         >
                                             <StyledSpan
-                                                fontSize={'34px'}
+                                                fontSize={'28px'}
                                                 fontWeight={'700'}
                                                 color={'#FF654E'}
                                             >
                                                 PROMOCODESHUB
                                             </StyledSpan>
                                         </Link>
-                                        <Div
-                                            height={'20px'}
+                                        <StyledSpan
+                                            fontSize={'14px'}
+                                            color={'#9F9F9F'}
+                                            mt={'4px'}
                                         >
-                                            <StyledSpan
-                                                fontSize={'16px'}
-                                                color={'#9F9F9F'}
+                                            <Link
+                                                to={'/'}
+                                                colorHover={'#848383'}
                                             >
-                                                <Link
-                                                    to={'/'}
-                                                    colorHover={'#848383'}
-                                                >
-                                                    актуальные промокоды и акции
-                                                </Link>
-                                            </StyledSpan>
-                                        </Div>
+                                                актуальные промокоды и акции
+                                            </Link>
+                                        </StyledSpan>
                                     </Flex>
                                     <Link
                                         to={'shops'}
@@ -67,6 +66,8 @@ export const Header: FC = (): JSX.Element => {
                                         </StyledShopsMobileBtn>
                                     </Link>
                                     <RoundBtn
+                                        width={'40px'}
+                                        height={'40px'}
                                         backgroundColor={'#FFE8E4'}
                                         icon={
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

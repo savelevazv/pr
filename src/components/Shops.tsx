@@ -2,17 +2,17 @@ import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
 import { Div } from "../styles/Div.styled";
 import { Flex } from "../styles/Flex.styled";
-import { Link } from "../Link";
+import { Link } from "./Link";
 import { AllShopsBtn, StyledSortBtn } from "./Buttons/Buttons.styled";
 import { StyledH2 } from "../styles/Fonts.styled";
 import { arrCategoriesTranslit } from "../data/data";
 
 
-interface ArrImgLogo {
+interface ImgLogoArr {
     imageUrl: string
 }
 
-type arrImgLogo = Array<ArrImgLogo>
+type arrImgLogo = Array<ImgLogoArr>
 
 const arrImgLogo = [
     { imageUrl: 'img/shop-logo.jpg' },

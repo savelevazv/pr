@@ -30,7 +30,6 @@ export const Div = styled('div') <DivProps> `
         right: ${props => props.right || ''};
         z-index: ${props => props.zIndex || ''};
         visibility: ${props => props.visibility || ''};
-        opacity: ${props => props.opacity || ''};
         overflow-x: ${props => props.overflowX || ''};
         overflow-y: ${props => props.overflowY || ''};
         overflow: ${props => props.overflow || ''};

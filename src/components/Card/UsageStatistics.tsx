@@ -2,11 +2,7 @@ import React, { FC } from "react";
 import { Flex } from "../../styles/Flex.styled";
 import { StyledP } from "../../styles/Fonts.styled";
 
-interface UsageStatisticsProps {
-    usage: number
-}
-
-export const UsageStatistics: FC<UsageStatisticsProps> = ({ usage }): JSX.Element => {
+export const UsageStatistics: FC<{ usage: string }> = ({ usage }): JSX.Element => {
     return (
         <Flex
             gap={'2px'}
@@ -22,12 +18,11 @@ export const UsageStatistics: FC<UsageStatisticsProps> = ({ usage }): JSX.Elemen
                     </clipPath>
                 </defs>
             </svg>
-
             <StyledP
                 fontSize={'12px'}
-                color={'#9F9F9F'} // с бэкэнда или сделать счетчик
+                color={'#9F9F9F'}
             >
-                Воспользовались {usage} раз
+                {usage}
             </StyledP>
         </Flex>
     )

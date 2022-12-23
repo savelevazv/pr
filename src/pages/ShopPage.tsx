@@ -75,8 +75,9 @@ const Promotion: FC = () => {
         <StyledPromotionBtn>
             <StyledSpan
                 color={'#FFFFFF'}
+                fontSize={'16px'}
             >
-                ПЕРЕЙТИ К АКЦИИ
+                Перейти к акции
             </StyledSpan>
         </StyledPromotionBtn>
     )
@@ -91,8 +92,8 @@ const testArrData: DiscountCardProps[] = [
         recommendation: true,
         title: 'Скидка 30%',
         promocode: '121234',
-        usage: 10,
-        time: 14
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 2,
@@ -102,8 +103,8 @@ const testArrData: DiscountCardProps[] = [
         recommendation: false,
         title: 'Скидка 30%',
         promocode: '121234',
-        usage: 10,
-        time: 14
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     },
     {
         id: 3,
@@ -113,8 +114,8 @@ const testArrData: DiscountCardProps[] = [
         recommendation: true,
         title: 'Скидка 30%',
         promocode: '121234',
-        usage: 10,
-        time: 14
+        usage: 'Воспользовались 102 раза',
+        time: 'Заканчивается через 2 дня'
     }
 ]
 
@@ -317,8 +318,8 @@ const DiscountBlock: FC = () => {
                         title={'title'}
                         recommendation={true}
                         promocode={'test'}
-                        usage={10}
-                        time={1}
+                        usage={'Воспользовались 10 раз'}
+                        time={'Заканчивается через 2 дня'}
 
                     />
                     <DiscountCard
@@ -328,8 +329,8 @@ const DiscountBlock: FC = () => {
                         terms={'Условия'}
                         recommendation={false}
                         promocode={'test22'}
-                        usage={20}
-                        time={2}
+                        usage={'Воспользовались 10 раз'}
+                        time={'Заканчивается через 2 дня'}
                     />
                 </Flex>
             </Div>
@@ -411,11 +412,6 @@ const InfoBlock: FC = () => {
         </Div >
     )
 }
-
-// export interface ShopPageProps {
-//     arrCategory: Array<ArrCategoryShops>
-// }
-
 
 export const ShopPage: FC = () => {
     const { translit_shop_name } = useParams()

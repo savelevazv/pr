@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import { Div } from "../styles/Div.styled";
 import { Flex } from "../styles/Flex.styled";
-import { Link } from "../Link";
+import { Link } from "./Link";
 import { StyledH3, StyledP } from "../styles/Fonts.styled";
 import { StyledDrawerProps } from './Drawer'
 
@@ -75,9 +75,7 @@ interface AccordionProps {
 
 const StyledAnswer = styled(StyledP) <StyledDrawerProps> ` 
     & {
-        ${props => props.active ? '' : css`
-            display: none;
-        `}
+        ${props => props.active ? '' : 'display: none'}
     }
 `
 

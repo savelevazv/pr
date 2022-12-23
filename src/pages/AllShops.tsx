@@ -6,7 +6,7 @@ import { StyledSortShopsBtn, StyledSortShopsBtnSecondary } from "../components/B
 import { Flex } from "../styles/Flex.styled";
 import { Div } from "../styles/Div.styled";
 import { StyledH1, StyledH2 } from "../styles/Fonts.styled";
-import { Link } from "../Link";
+import { Link } from "../components/Link";
 import { Grid } from "../styles/Grid.styled";
 import { arrCategoriesTranslit } from "../data/data";
 import axios from 'axios';

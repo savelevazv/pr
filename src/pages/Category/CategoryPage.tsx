@@ -7,7 +7,7 @@ import { StyledH1 } from '../../styles/Fonts.styled';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { CenteredLayout } from '../../components/Layouts/CenteredLayout';
 import { CenteredLayoutBody } from '../../components/Layouts/CenteredLayoutBody';
-import { Link } from '../../Link';
+import { Link } from '../../components/Link';
 import { Skeleton } from './Skeleton';
 import { Grid } from '../../styles/Grid.styled';
 import { arrCategoriesTranslit } from '../../data/data';

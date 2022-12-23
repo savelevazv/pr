@@ -1,9 +1,8 @@
 import { FC, MouseEvent, ReactNode } from "react";
 import { StyledRoundBtn, StyledRoundBtnProps } from "./Buttons.styled";
-import { Flex } from "../../styles/Flex.styled";
+import { IconProps } from "./ContactsBtn";
 
-export interface RoundBtnProps extends StyledRoundBtnProps {
-    icon: ReactNode,
+export interface RoundBtnProps extends StyledRoundBtnProps, IconProps {
     onClick?: (event: MouseEvent<HTMLElement>) => void
 }
 

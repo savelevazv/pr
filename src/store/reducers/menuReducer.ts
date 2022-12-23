@@ -8,13 +8,6 @@ const menuSlice = createSlice({
     name: 'menu',
     initialState,
     reducers: {
-        open: (state) => {
-            state.value = true
-        },
-
-        onClose: (state) => {
-            state.value = false
-        },
         setMenu: (state, action: PayloadAction<boolean>) => {
             state.value = action.payload
         }

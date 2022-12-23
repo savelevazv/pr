@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../index';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: { value: boolean } = {
     value: false
@@ -9,15 +8,11 @@ const modalSlice = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        openModal: (state) => {
-            state.value = true
-        },
-
-        onCloseModal: (state) => {
-            state.value = false
+        setModal: (state, action: PayloadAction<boolean>) => {
+            state.value = action.payload
         }
     },
 })
 
-export const { openModal, onCloseModal } = modalSlice.actions
+export const { setModal } = modalSlice.actions
 export const modalReducer = modalSlice.reducer

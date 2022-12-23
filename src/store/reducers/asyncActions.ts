@@ -1,6 +1,5 @@
 import axios from 'axios'; 
 import { RootDispatch } from '..';
-import { useAppDispatch } from '../hooks/hooks';
 import { Shop } from '../types';
 import { shopsFetching, shopsFetchingError, shopsFetchingSuccess } from './shopsReducer';
 
@@ -15,3 +14,4 @@ export const fetchShops = () => async (dispatch: RootDispatch) => {
         }
     }
 }
+

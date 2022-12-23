@@ -1,9 +1,16 @@
-import React, { FC, ReactNode } from "react";
-import { StyledLink } from "./styles/Link.styled";
-import { StyledLinkProps } from "./styles/types";
+import { FC, ReactNode } from "react";
+import { StyledLink } from "../styles/Link.styled";
+import { StyledLinkProps } from "../styles/types";
 
-export interface LinkProps extends StyledLinkProps {
-    to?: string // сделать обязательным
+export interface TitleProps {
+    title: string
+}
+
+export interface BaseLinkProps extends TitleProps {
+    to: string
+}
+
+export interface LinkProps extends StyledLinkProps, Omit<BaseLinkProps, "title"> {
     target?: string
     children: ReactNode
 }

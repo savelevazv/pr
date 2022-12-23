@@ -1,11 +1,10 @@
-import React, { FC, ReactNode } from "react";
-import { Div } from "../styles/Div.styled";
+import { FC, ReactNode } from "react";
 import { Flex } from "../styles/Flex.styled";
 import { StyledP, StyledSpan } from "../styles/Fonts.styled";
+import { BaseLinkProps, TitleProps } from "./Link";
 
-interface SubscriptionInfoCardProps {
-    color: string,
-    title: string,
+export interface SubscriptionInfoCardProps extends TitleProps {
+    color: string
     content: ReactNode
 }
 
