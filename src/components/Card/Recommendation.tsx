@@ -13,6 +13,7 @@ export const Recommendation: FC = () => {
                 fontSize={'12px'}
                 color={'#31A169'}
                 padding={'4px 10px'}
+                fontWeight={'500'}
             >
                 Рекомендуем!
             </StyledP>

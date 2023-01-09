@@ -23,7 +23,7 @@ const InformationCard: FC<{ children: ReactNode }> = ({ children }): JSX.Element
 }
 
 export const StagesOfInterpretation: FC = () => {
-    const isDesktop = useMediaQuery({ query: '(max-width: 1199px)' })
+    const isDesktop = useMediaQuery({ query: '(max-width: 1280px)' })
 
     return (
         <>
@@ -39,6 +39,7 @@ export const StagesOfInterpretation: FC = () => {
                         >
                             <StyledH2
                                 mt={'100px'}
+                                fontWeight={'700'}
                             >
                                 Как это работает?
                             </StyledH2>
@@ -63,6 +64,7 @@ export const StagesOfInterpretation: FC = () => {
                             >
                                 <StyledSpan
                                     fontSize={'20px'}
+                                    fontWeight={'600'}
                                 >
                                     Ваша задача
                                 </StyledSpan>
@@ -87,6 +89,7 @@ export const StagesOfInterpretation: FC = () => {
                             >
                                 <StyledSpan
                                     fontSize={'20px'}
+                                    fontWeight={'600'}
                                 >
                                     Наша работа
                                 </StyledSpan>

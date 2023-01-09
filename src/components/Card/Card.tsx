@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Div } from "../../styles/Div.styled";
 import { Flex } from "../../styles/Flex.styled";
 import { Link } from "../Link";
@@ -9,9 +9,9 @@ import { UsageStatistics } from "./UsageStatistics";
 import { TimeOfAction } from "./TimeOfAction";
 import { StyledCard } from "./Card.styled";
 import { StyledP } from "../../styles/Fonts.styled";
+import { useMediaQuery } from "react-responsive";
 
 export const Card: FC<PromocodeProps> = ({
-    id,
     discount,
     recommendation,
     logo_Url,
@@ -22,11 +22,12 @@ export const Card: FC<PromocodeProps> = ({
     usage,
     time
 }): JSX.Element => {
+    const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 999.5px)' })
     return (
         <StyledCard
             direction={'column'}
             justify={'space-between'}
-            width={'266px'}
+            width={'100%'}
             height={'360px'}
             br={'14px'}
             padding={'12px'}
@@ -44,6 +45,7 @@ export const Card: FC<PromocodeProps> = ({
                     <StyledP
                         fontSize={(discount.length <= 16) ? '14px' : '12px'}
                         color={'#F13C47'}
+                        fontWeight={'500'}
                     >
                         {discount}
                     </StyledP>
@@ -55,7 +57,7 @@ export const Card: FC<PromocodeProps> = ({
 
             </Flex>
             <Div
-                padding={'20px 54px 0 54px'}
+                textAlign={'center'}
             >
                 <img style={{ borderRadius: '14px' }} width={144} height={60} src={logo_Url} alt={logo_Alt} />
             </Div>
@@ -88,7 +90,8 @@ export const Card: FC<PromocodeProps> = ({
                 </Link>
             </Flex>
             <Div
-                margin={'0 16px 14px 16px'}
+                margin={'0 auto 14px auto'}
+                width={isTablet ? '88%' : ''}
             >
                 <Promocode
                     promocode={promocode}

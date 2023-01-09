@@ -60,7 +60,7 @@ export const AllShops = ({ }) => {
                                 >
                                     <StyledSortShopsBtnSecondary
                                         key={el.title}
-                                        width={'288px'}
+                                        width={'290px'}
                                         backgroundColorHover={'#F5F2F2'}
                                     >
                                         {el.svg}

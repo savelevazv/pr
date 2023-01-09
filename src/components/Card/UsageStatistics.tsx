@@ -21,6 +21,7 @@ export const UsageStatistics: FC<{ usage: string }> = ({ usage }): JSX.Element =
             <StyledP
                 fontSize={'12px'}
                 color={'#9F9F9F'}
+                fontWeight={'400'}
             >
                 {usage}
             </StyledP>

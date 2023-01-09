@@ -12,11 +12,14 @@ import { StyledHeader } from "./Header.styles";
 import { RoundBtn } from "../Buttons/RoundBtn";
 import { useMediaQuery } from 'react-responsive'
 import { StyledShopsMobileBtn } from "../Buttons/Buttons.styled";
+import { useAppDispatch } from "../../store/hooks/hooks";
+import { setMobileSearchState } from "../../store/reducers/searchReducer";
 
 export const Header: FC = (): JSX.Element => {
     const isMobile = useMediaQuery({ query: '(min-width: 320px) and (max-width: 479px)' })
     const isMobile480 = useMediaQuery({ query: '(min-width: 480px) and (max-width: 767px)' })
     const isTablet = useMediaQuery({ query: '(max-width: 999.5px)' })
+    const dispatch = useAppDispatch()
 
     return (
         <StyledHeader>
@@ -48,7 +51,8 @@ export const Header: FC = (): JSX.Element => {
                                         <StyledSpan
                                             fontSize={'14px'}
                                             color={'#9F9F9F'}
-                                            mt={'4px'}
+                                            fontWeight={'600'}
+                                            mt={'-6px'}
                                         >
                                             <Link
                                                 to={'/'}
@@ -82,6 +86,7 @@ export const Header: FC = (): JSX.Element => {
                                             </svg>
                                         }
                                         hoverOpacity={0.8}
+                                        onClick={() => dispatch(setMobileSearchState(true))}
                                     />
                                 </>
                             ) : (
@@ -101,12 +106,11 @@ export const Header: FC = (): JSX.Element => {
                                                 PROMOCODESHUB
                                             </StyledSpan>
                                         </Link>
-                                        <Div
-                                            height={'20px'}
-                                        >
                                             <StyledSpan
                                                 fontSize={'16px'}
                                                 color={'#9F9F9F'}
+                                                fontWeight={'600'}
+                                                mt={'-6px'}
                                             >
                                                 <Link
                                                     to={'/'}
@@ -115,9 +119,10 @@ export const Header: FC = (): JSX.Element => {
                                                     актуальные промокоды и акции
                                                 </Link>
                                             </StyledSpan>
-                                        </Div>
                                     </Flex>
-                                    <InputSeach />
+                                    <InputSeach 
+                                        width={'40%'}
+                                    />
                                     <MenuBtn />
                                 </>
                             )

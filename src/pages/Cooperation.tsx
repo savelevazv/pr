@@ -7,7 +7,6 @@ import { Div } from "../styles/Div.styled";
 import { Flex } from "../styles/Flex.styled";
 import { StyledH2, StyledP, StyledSpan } from "../styles/Fonts.styled";
 import { IconProps } from "../components/Buttons/ContactsBtn";
-import { TitleProps } from "../components/Link";
 import { SubscriptionInfoCardProps } from "../components/SubscriptionInfoBlock";
 
 const StyledEmail = styled('span')`
@@ -105,7 +104,11 @@ const Advantage: FC<advantagesProps> = ({ icon, title, content }): JSX.Element =
                 >
                     {title}
                 </StyledSpan>
-                {content}
+                <Div
+                    fontWeight={'500'}
+                >
+                    {content}
+                </Div>
             </Flex>
         </Flex>
     )
@@ -194,6 +197,7 @@ export const Cooperation: FC = () => {
                     />
                     <StyledH2
                         pb={'44px'}
+                        fontWeight={'700'}
                     >
                         Сотрудничество
                     </StyledH2>
@@ -304,10 +308,10 @@ export const Cooperation: FC = () => {
                                 backgroundColor={'#F3F3F3'}
                                 br={'14px'}
                                 mb={'50px'}
-                                width={'60%'}
+                                width={'70%'}
                             >
                                 <StyledSpan
-                                    fontSize={'14px'}
+                                    fontSize={'16px'}
                                     fontWeight={'700'}
                                 >
                                     ВАШ БИЗНЕС
@@ -324,7 +328,7 @@ export const Cooperation: FC = () => {
                                 </svg>
 
                                 <StyledSpan
-                                    fontSize={'14px'}
+                                    fontSize={'16px'}
                                     fontWeight={'700'}
                                     color={'#FF654E'}
                                 >
@@ -346,7 +350,7 @@ export const Cooperation: FC = () => {
                                 })}
                             </Div>
                             <StyledP
-                                fontSize={'20px'}
+                                fontSize={'16px'}
                                 mt={'26px'}
                             >
                                 Ждем вашего письма: <StyledEmail>ad@promocodeshub.ru</StyledEmail>

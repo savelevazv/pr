@@ -15,7 +15,7 @@ export const StyledPromocodeBtn = styled('button')`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 220px;
+        width: 100%;
         height: 40px;
         background-color: #F3F3F3;
         border-radius: 7px;
@@ -43,6 +43,7 @@ export const StyledSortBtn = styled(StyledDefaultBtn) <StyledSortBtnProps>`
         padding: 10px 20px;
         border-radius: 7px;
         transition: background-color 0.3s ease;
+        font-weight: 500;
 
         svg {
             margin-right: 10px;
@@ -211,7 +212,7 @@ export const StyledSortShopsBtn = styled(StyledDefaultBtn) <StyledDrawerProps>`
         color: #4A89C1;
         border-radius: 7px;
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 500;
         transition: background-color 0.3s ease;
 
         ${props => props.active && css`
@@ -262,7 +263,7 @@ export const StyledSupportBannerBtn = styled(StyledBannerStatisticsBtn)`
         display: flex;
         align-items: center;
         transition: fill 0.3s ease;
-        font-weight: 700;
+        font-weight: 600;
         gap: 6px;
     }
 
@@ -290,9 +291,7 @@ export const StyledFormBtn = styled(StyledDefaultOrangeBtn)`
 
 export const StyledCopyBtn = styled(StyledDefaultBtn) <StyledDrawerProps>`
     & {
-        display: flex;
-        gap: 8px;
-        align-items: center;
+
         position: absolute;
         top: 0;
         right: 0;
@@ -303,9 +302,8 @@ export const StyledCopyBtn = styled(StyledDefaultBtn) <StyledDrawerProps>`
         border: ${props => props.active ? '2px solid #31A169' : '2px solid #9F9F9F'};
         border-radius: 14px;
         background-color: #FFFFFF;
-        padding: 16px 17px;
         transition: all 0.3s ease-in-out;
-        width: 165px;
+        width: 164px;
 
         path {
             fill: ${props => props.active ? '#31A169' : ''};
@@ -342,7 +340,7 @@ export const StyledSubscribeNewsletterBtn = styled(StyledDefaultBtn)`
         background-color: #E0F1E9;
         color: #31A169;
         padding: 6px 10px;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     &:hover {

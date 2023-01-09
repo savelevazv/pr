@@ -4,7 +4,7 @@ import { CenteredLayout } from '../components/Layouts/CenteredLayout'
 import { CenteredLayoutBody } from '../components/Layouts/CenteredLayoutBody'
 import { Div } from '../styles/Div.styled'
 import { Flex } from '../styles/Flex.styled'
-import { StyledH3 } from '../styles/Fonts.styled'
+import { StyledH2, StyledH3 } from '../styles/Fonts.styled'
 import { DiscountCard, SimilarStores } from './ShopPage'
 import { StyledSortShopsBtnSecondary } from '../components/Buttons/Buttons.styled'
 import { Link } from '../components/Link'
@@ -19,12 +19,13 @@ export const Offers: FC = () => {
                 <Breadcrumbs
                     titleLastPage={'Все предложения'}
                 />
-                <StyledH3
+                <StyledH2
                     fontSize={'32px'}
                     mb={'30px'}
+                    fontWeight={'700'}
                 >
                     Все предложения
-                </StyledH3>
+                </StyledH2>
                 <Flex
                     justify={'space-between'}
                 >
@@ -56,7 +57,7 @@ export const Offers: FC = () => {
                         />
                     </Flex>
                     <Flex
-                        width={'280px'}
+                        width={'290px'}
                         direction={'column'}
                     >
                         <SimilarStores
@@ -65,6 +66,7 @@ export const Offers: FC = () => {
                         <Div>
                             <StyledH3
                                 fontSize={'18px'}
+                                fontWeight={'600'}
                                 mt={'36px'}
                                 mb={'12px'}
                                 textAlign={'center'}

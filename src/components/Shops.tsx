@@ -50,6 +50,7 @@ export const Shops: FC = () => {
             <StyledH2
                 mt={'40px'}
                 mb={'30px'}
+                fontWeight={'700'}
             >
                 Топ магазинов
             </StyledH2>

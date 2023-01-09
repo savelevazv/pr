@@ -3,7 +3,7 @@ import { Flex } from "../../../styles/Flex.styled";
 import CountUp from 'react-countup';
 import { StyledSpan } from "../../../styles/Fonts.styled";
 import { Div } from "../../../styles/Div.styled";
-import { BaseLinkProps, TitleProps } from "../../Link";
+import { TitleProps } from "../../Link";
 
 interface NumElementProps extends TitleProps {
     number: number
@@ -32,7 +32,6 @@ export const NumElement: FC<NumElementProps> = ({ number, title }): JSX.Element 
                 fontSize={'40px'}
                 fontWeight={'600'}
                 width={'110px'}
-                height={'50px'}
                 textAlign={'center'}
             >
                 {
@@ -45,6 +44,7 @@ export const NumElement: FC<NumElementProps> = ({ number, title }): JSX.Element 
                 }
             </Div>
             <StyledSpan
+                fontWeight={'500'}
             >
                 {title}
             </StyledSpan>

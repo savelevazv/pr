@@ -9,8 +9,10 @@ export const EmptyBlock: FC = () => {
             align={'center'}
             gap={'2px'}
         >
-            <StyledP>
-                К сожалению, ничего не найдено
+            <StyledP
+                color={'#9F9F9F'}
+            >
+                Ой, ничего не найдено
             </StyledP>
             <img width={16} height={16} src="/img/sad-emoji.png" alt="sad-emoji" />
         </Flex>

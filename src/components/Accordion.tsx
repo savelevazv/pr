@@ -5,6 +5,7 @@ import { Flex } from "../styles/Flex.styled";
 import { Link } from "./Link";
 import { StyledH3, StyledP } from "../styles/Fonts.styled";
 import { StyledDrawerProps } from './Drawer'
+import { useMediaQuery } from "react-responsive";
 
 // добавить рабочие ссылки на почты
 
@@ -98,7 +99,7 @@ const SvgContainer = styled(Div)`
 `
 
 export const Accordion: FC = () => {
-
+    const isDesktop = useMediaQuery({ query: '(min-width: 1000px) and (max-width: 1280px)' })
     const [activeAccordicon, setActiveAccordion] = useState<number>(-1)
 
     const toggleAccordion = (index: number) => {
@@ -116,7 +117,7 @@ export const Accordion: FC = () => {
                 accordionData.map((item, index) => {
                     return (
                         <StyledAccordion
-                            width={'100%'}
+                            width={isDesktop ? '96%' : '100%'}
                             backgroundColor={activeAccordicon === index ? '#DDDDDD' : '#e9e9e9'}
                             br={'14px'}
                             mb={'20px'}
@@ -163,8 +164,9 @@ export const Accordion: FC = () => {
                             <Div>
                                 <StyledAnswer
                                     fontSize={'13px'}
+                                    fontWeight={'400'}
                                     mt={'24px'}
-                                    active={activeAccordicon === index && true}
+                                    active={activeAccordicon === index}
                                 >
                                     {item.answer}
                                 </StyledAnswer>

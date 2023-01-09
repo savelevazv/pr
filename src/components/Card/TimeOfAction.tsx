@@ -20,7 +20,8 @@ export const TimeOfAction: FC<{ time: string }> = ({ time }) => {
             </svg>
             <StyledP
                 fontSize={'12px'}
-                color={'#9F9F9F'} // с бэкэнда
+                color={'#9F9F9F'} 
+                fontWeight={'400'}
             >
                 {time}
             </StyledP>

@@ -128,6 +128,7 @@ export const PrivacyPoint: FC<PrivacyPointProps> = ({ title, info }) => {
         <>
             <StyledH3
                 margin={'20px 0'}
+                fontWeight={'600'}
             >
                 {title}
             </StyledH3>

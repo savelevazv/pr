@@ -14,6 +14,7 @@ export interface shopsSliceState {
 }
 
 export interface searchSliceState {
+    mobileSearchState: boolean
     searchValue: string
     foundShops: Shop[]
 }

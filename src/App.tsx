@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { Header } from './components/Header/Header';
 import { CenteredLayout } from './components/Layouts/CenteredLayout';
 import { CenteredLayoutBody } from './components/Layouts/CenteredLayoutBody';
@@ -25,12 +25,14 @@ import { CategoryPage } from './pages/Category/CategoryPage';
 import { fetchShops } from './store/reducers/asyncActions';
 import { Drawer } from './components/Drawer';
 import { SearchPage } from './pages/SearchPage';
+import { useMediaQuery } from 'react-responsive';
+import MobileSearch from './components/MobileSearch';
 
-// скачет страница, при открытии меню или модального окна
 // не отрабатывает transition у modal
 // onBlur не позволяет нажать на кнопку "Показать все" в блоке поиска
 // Фильтрация по алфавиту
 // Адаптивы
+// Статус загрузки для карточек
 
 const StyledMain = styled('main')`
   & {
@@ -52,7 +54,10 @@ export const StyledHeader = styled('header')`
 function App() {
   const menuState = useAppSelector(state => state.menu.value)
   const modalState = useAppSelector(state => state.modal.value)
+  const mobileSearchState = useAppSelector(state => state.search.mobileSearchState)
   const dispatch = useAppDispatch()
+
+  const isTablet = useMediaQuery({ query: '(max-width: 999.5px)' })
 
   useEffect(() => {
     dispatch(fetchShops())
@@ -61,7 +66,7 @@ function App() {
   return (
     <>
       <Global
-        overflow={menuState || modalState ? 'hidden' : 'scroll'}
+        overflowY={menuState || modalState || mobileSearchState ? 'hidden' : 'scroll'}
       />
       <Header />
       <StyledMain>
@@ -118,6 +123,9 @@ function App() {
               />
             </Routes>
             <BannerSubscriptionBasic />
+            {
+              isTablet && <MobileSearch />
+            }
           </CenteredLayoutBody>
         </CenteredLayout>
       </StyledMain>

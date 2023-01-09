@@ -28,6 +28,7 @@ export const ContactsBtn: FC<ContactsBtnProps> = ({ to, title, target, icon }): 
                 <StyledP
                     fontSize={'10px'}
                     color={'#9F9F9F'}
+                    fontWeight={'500'}
                 >
                     {title}
                 </StyledP>

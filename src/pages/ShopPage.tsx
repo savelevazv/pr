@@ -304,6 +304,7 @@ const DiscountBlock: FC = () => {
                 <StyledH3
                     fontSize={'16px'}
                     mb={'20px'}
+                    fontWeight={'600'}
                 >
                     Вам может быть интересно:
                 </StyledH3>

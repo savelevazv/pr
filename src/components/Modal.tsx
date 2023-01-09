@@ -56,6 +56,11 @@ export const Modal: FC = () => {
         }
     `
 
+    const closeModal = () => {
+        dispatch(setModal(false));
+        setCopy(false);
+    }
+
     return (
         <StyledOverlayModal
             width={'100%'}
@@ -66,7 +71,7 @@ export const Modal: FC = () => {
             justify={'center'}
             align={'center'}
             backgroundColor={'rgba(0,0,0,.8)'}
-            zIndex={10}
+            zIndex={50}
             cursor={'pointer'}
             onClick={() => dispatch(setModal(false))}
             active={modalState}
@@ -74,7 +79,6 @@ export const Modal: FC = () => {
             <StyledModal
                 direction={'column'}
                 width={'600px'}
-                zIndex={4}
                 cursor={'default'}
                 onClick={e => e.stopPropagation()}
                 active={modalState}
@@ -159,6 +163,7 @@ export const Modal: FC = () => {
                         mt={'30px'}
                         mb={'30px'}
                         cursor={'text'}
+                        fontWeight={'400'}
                     >
                         description
                     </StyledP>
@@ -182,12 +187,13 @@ export const Modal: FC = () => {
                     height={'56px'}
                     padding={'0px 60px'}
                     align={'center'}
-                    gap={'16px'}
+                    justify={'space-between'}
                 >
                     <StyledP
                         fontSize={'12px'}
+                        fontWeight={'400'}
                     >
-                        Подпишитесь на рассылку и получайте секретные промокоды
+                        Подпишитесь на рассылку секретных промокодов
                     </StyledP>
                     <Link
                         to={'subscription'}

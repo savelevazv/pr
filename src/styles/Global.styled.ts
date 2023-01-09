@@ -1,14 +1,14 @@
 import { createGlobalStyle } from "styled-components"
 
 interface GlobalStyleProps {
-  overflow: string
+  overflowY: string
 }
 
 
 export const Global = createGlobalStyle<GlobalStyleProps>`
   * {
-    font-style: normal;
-      font-family: 'Raleway';
+      font-style: normal;
+      font-family: 'Montserrat';
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -20,7 +20,8 @@ export const Global = createGlobalStyle<GlobalStyleProps>`
   body {
     background-color: #FBFBFB;
     overflow-x: hidden;
-    overflow-y: ${props => props.overflow};
+    overflow-y: ${props => props.overflowY};
+    width: 100vw;
   }
 
 `

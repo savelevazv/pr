@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { searchSliceState, Shop } from '../types';
 
 const initialState: searchSliceState = {
+    mobileSearchState: false,
     searchValue: '',
     foundShops: []
 }
@@ -15,9 +16,12 @@ const searchSlice = createSlice({
         },
         setFoundShops: (state, action: PayloadAction<Shop[]>) => {
             state.foundShops = action.payload
+        },
+        setMobileSearchState: (state, action: PayloadAction<boolean>) => {
+            state.mobileSearchState = action.payload
         }
     },
 })
 
-export const { setSearchValue, setFoundShops } = searchSlice.actions
+export const { setSearchValue, setFoundShops, setMobileSearchState } = searchSlice.actions
 export const searchReducer = searchSlice.reducer

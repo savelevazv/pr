@@ -36,7 +36,6 @@ export interface DivProps extends FontBaseProps {
     overflowX?: string
     overflowY?: string
     overflow?: string
-    fontWeight?: string
 }
 
 export interface FlexProps {
@@ -50,6 +49,7 @@ export interface FlexProps {
 export interface FontBaseProps extends BaseProps {
     textAlign?: string
     cursor?: string
+    fontWeight?: string
 }
 
 export interface FontProps extends Omit<FontBaseProps, "cursor"> {

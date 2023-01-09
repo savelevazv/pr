@@ -3,7 +3,7 @@ import { FontBaseProps, FontProps } from "./types";
 
 export const StyledH1 = styled('h1') <FontProps>`
   & {
-        font-weight: ${props => props.fontWeight || '600'};
+        font-weight: ${props => props.fontWeight || '700'};
         font-size: ${props => props.fontSize || '32px'};
         color: ${props => props.color || ''};
         padding: ${props => props.padding || ''};
@@ -49,7 +49,7 @@ export const StyledH2 = styled('h2') <FontProps>`
 
 export const StyledH3 = styled('h3') <FontBaseProps>`
     & {
-        font-weight: 600;
+        font-weight: ${props => props.fontWeight || '500'};
         font-size: ${props => props.fontSize || '20px'};
         color: ${props => props.color || ''};
         padding: ${props => props.padding || ''};
@@ -88,7 +88,7 @@ export const StyledSpan = styled('span') <FontProps>`
 
 export const StyledP = styled('p') <FontBaseProps>`
     & {
-        font-weight: 500;
+        font-weight:${props => props.fontWeight || '500'};
         font-size: ${props => props.fontSize || '16px'};
         color: ${props => props.color || ''};
         padding: ${props => props.padding || ''};

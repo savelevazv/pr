@@ -76,6 +76,7 @@ export const BestPromotions: FC = () => {
         >
             <StyledH2
                 mb={'32px'}
+                fontWeight={'700'}
             >
                 Лучшие акции
             </StyledH2>

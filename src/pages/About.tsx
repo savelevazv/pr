@@ -131,6 +131,7 @@ export const About: FC = () => {
                     </StyledP>
                     <StyledH3
                         mt={'30px'}
+                        fontWeight={'600'}
                     >
                         Контакты:
                     </StyledH3>

@@ -8,7 +8,7 @@ export const StyledHeader = styled('header')`
      top: 0;
      width: 100%;
      z-index: 2;
-     padding: 14px 0 12px 0;
+     padding: 12px 0;
      @media (max-width: 999.5px) {
           height: 70px;
           padding: 8px 0;

@@ -5,8 +5,10 @@ import { useAppDispatch } from "../../store/hooks/hooks";
 import { StyledPromocodeBtn } from "../Buttons/Buttons.styled";
 import { StyledPromocodeSpan } from "./Card.styled";
 import { setModal } from "../../store/reducers/modalReducer";
+import { useMediaQuery } from "react-responsive";
 
 export const Promocode: FC<{ promocode: string }> = ({ promocode }) => {
+    const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 999.5px)' })
     const dispatch = useAppDispatch()
 
     return (
@@ -16,12 +18,11 @@ export const Promocode: FC<{ promocode: string }> = ({ promocode }) => {
             <Flex
                 align={'center'}
                 justify={'center'}
-                width={'180px'}
+                width={isTablet ? '90%' : '180px'}
                 height={'40px'}
                 backgroundColor={'#FF654E'}
                 br={'7px 0 0 7px'}
-                pr={'8px'}
-                pl={'16px'}
+                pl={'8px'}
 
             >
                 <StyledSpan

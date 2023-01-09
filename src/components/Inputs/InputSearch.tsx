@@ -13,6 +13,7 @@ import { StyledLink } from "../../styles/Link.styled";
 import { Link } from "../Link";
 import { EmptyBlock } from "../SearchBlocks/EmptyBlock";
 import { SearchBlock } from "../SearchBlocks/SearchBlock";
+import { useMediaQuery } from "react-responsive";
 
 const StyledInputContainer = styled(Flex)`
     & {
@@ -20,7 +21,7 @@ const StyledInputContainer = styled(Flex)`
     }
 `
 
-const StyledFoundShopsLink = styled(StyledLink)`
+export const StyledFoundShopsLink = styled(StyledLink)`
   & {
     display: flex;
     align-items: center;
@@ -31,12 +32,32 @@ const StyledFoundShopsLink = styled(StyledLink)`
   }
 `
 
-export const InputSeach: FC = (): JSX.Element => {
+export const ShowAllBtn: FC = () => {
+    return (
+        <Div
+            mt={'16px'}
+        >
+            <Link
+                to={'/search'}
+            >
+                <StyledBannerStatisticsBtn
+                    backgroundColor={'#F3F3F3'}
+                >
+                    Показать все
+                </StyledBannerStatisticsBtn>
+            </Link>
+        </Div>
+    )
+}
+
+export const InputSeach: FC<{ width: string }> = ({ width }): JSX.Element => {
     const [activeInput, setActiveInput] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const searchValue = useAppSelector(state => state.search.searchValue)
     const foundShops = useAppSelector(state => state.search.foundShops)
     const dispatch = useAppDispatch()
+    const isTablet = useMediaQuery({ query: '(max-width: 999.5px)' })
+    const isDesktop = useMediaQuery({ query: '(min-width: 1000px)' })
 
     useEffect(() => {
         (async () => {
@@ -54,7 +75,7 @@ export const InputSeach: FC = (): JSX.Element => {
     return (
         <Div
             position={'relative'}
-            width={'40%'}
+            width={width}
         >
             <StyledInputContainer
                 align={'center'}
@@ -84,7 +105,8 @@ export const InputSeach: FC = (): JSX.Element => {
                     value={searchValue}
                     onChange={e => dispatch(setSearchValue(e.target.value))}
                     onFocus={() => setActiveInput(true)}
-                    onBlur={() => setActiveInput(false)}
+                    // onBlur={() => setActiveInput(false)}
+                    autoFocus={isTablet}
                 />
                 <Flex
                     align={'center'}
@@ -118,7 +140,7 @@ export const InputSeach: FC = (): JSX.Element => {
 
                 </Flex>
                 {
-                    activeInput && searchValue && isLoading === false &&
+                    isDesktop && activeInput && searchValue && isLoading === false &&
                     <SearchBlock>
                         <Flex
                             direction={'column'}
@@ -148,19 +170,7 @@ export const InputSeach: FC = (): JSX.Element => {
                             foundShops.length == 0 ? (
                                 <EmptyBlock />
                             ) : (
-                                <Div
-                                    mt={'16px'}
-                                >
-                                    <Link
-                                        to={'/search'}
-                                    >
-                                        <StyledBannerStatisticsBtn
-                                            backgroundColor={'#F3F3F3'}
-                                        >
-                                            Показать все
-                                        </StyledBannerStatisticsBtn>
-                                    </Link>
-                                </Div>
+                                <ShowAllBtn />
                             )
                         }
                     </SearchBlock>

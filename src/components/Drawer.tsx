@@ -297,6 +297,7 @@ export const Drawer: FC = () => {
                                             {el.icon}
                                             <StyledSpan
                                                 fontSize={'16px'}
+                                                fontWeight={'600'}
                                             >
                                                 {el.title}
                                             </StyledSpan>
@@ -310,6 +311,7 @@ export const Drawer: FC = () => {
                             <StyledSpan
                                 color={'#9F9F9F'}
                                 padding={'10px 0 16px 0'}
+                                fontWeight={'600'}
                             >
                                 Социальные сети и обратная связь
                             </StyledSpan>

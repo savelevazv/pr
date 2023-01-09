@@ -21,7 +21,7 @@ const StyledBasicInput = styled('input')`
 export const StyledPromocodeInput = styled('input')`
     & {
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 600;
         width: 100%;
         border-radius: 14px;
         outline: none;
@@ -33,7 +33,7 @@ export const StyledPromocodeInput = styled('input')`
 
 export const StyledInputSearch = styled(StyledBasicInput)`
     & {
-        width: 80%;
+        width: 100%;
         caret-color: #FF654E;
     }
 
